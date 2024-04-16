@@ -1,6 +1,7 @@
 package com.sst.productservicessst.Services;
 
 import com.sst.productservicessst.Dtos.FakeStoreDto;
+import com.sst.productservicessst.Models.Category;
 import com.sst.productservicessst.Models.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -15,7 +16,8 @@ public class FakeStoreProductService implements ProductService{
         FakeStoreDto fakeStoreDto = restTemplate.getForObject("https://fakestoreapi.com/products/" + id, FakeStoreDto.class);
 
         product.setId(fakeStoreDto.getId());
-        product.setCategory(fakeStoreDto.getCategory());
+        Category category = new Category();
+        product.setCategory(category);
         product.setDescription(fakeStoreDto.getDescription());
         product.setTittle(fakeStoreDto.getTitle());
         product.setPrice(fakeStoreDto.getPrice());
